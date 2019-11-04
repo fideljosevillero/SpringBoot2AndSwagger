@@ -1,21 +1,23 @@
 package com.fideljose.controller;
 
-import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.DisposableBean;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.fideljose.model.Person;
 import com.fideljose.service.IPersonService;
 
+//swagger url 'http://localhost:1717/v2/api-docs'
+//http://localhost:1717/swagger-ui.html
+//https://www.baeldung.com/swagger-2-documentation-for-spring-rest-api
 @RestController
 @RequestMapping(value="/api")
 public class PersonController implements InitializingBean, DisposableBean {
@@ -52,6 +54,11 @@ public class PersonController implements InitializingBean, DisposableBean {
 	@GetMapping("/get/{id}")
 	public Optional<Person> getPerson(@PathVariable Integer id){
 		return personService.findPerson(id);
+	}
+	
+	@PostMapping("/response")
+	public String response(@RequestBody String body) {
+		return body+"---";
 	}
 	
 //	@PostMapping("/create")
