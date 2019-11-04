@@ -15,29 +15,25 @@ import org.springframework.web.bind.annotation.RestController;
 import com.fideljose.model.Person;
 import com.fideljose.service.IPersonService;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+
 //swagger url 'http://localhost:1717/v2/api-docs'
 //http://localhost:1717/swagger-ui.html
 //https://www.baeldung.com/swagger-2-documentation-for-spring-rest-api
 @RestController
 @RequestMapping(value="/api")
+@Api(value = "Nombre descriptivo del Api en esta clase", description = "Controlador Persona")
 public class PersonController implements InitializingBean, DisposableBean {
 
 	@Autowired
 	IPersonService personService;
 	
+//	@ApiResponses( code = 200, value = { @ApiResponse(code = 0, message = "") })
+	@ApiOperation(value="Value Operation - Prueba!!!")
 	@GetMapping("/")
-//	public ResponseEntity<List<Person>> test() {
 	public Optional<Person> test() {
-//		Person p1 = new Person("firstName", "lastName", "address", "city");
-//		Person p2 = new Person("firstName", "lastName", "address", "city");
-//		Person p3 = new Person("firstName", "lastName", "address", "city");
-//		List<Person> list = new ArrayList<Person>();
-//		list.add(p1);
-//		list.add(p2);
-//		list.add(p3);
 		personService.getPeople();
-//		List<Person> list = personService.getPeople();
-//		return new ResponseEntity<List<Person>>(list, HttpStatus.OK);
 		return personService.findPerson(1);
 	}
 
