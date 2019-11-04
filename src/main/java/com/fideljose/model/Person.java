@@ -8,6 +8,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import io.swagger.annotations.ApiModelProperty;
+
 @Entity
 @Table(name = "Persona")
 public class Person implements Serializable {
@@ -15,9 +17,14 @@ public class Person implements Serializable {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Id
 	private Integer Id;
+	
+	@ApiModelProperty(notes = "Primer nombre")
 	private String firstName;
+	@ApiModelProperty(notes = "Segundo nombre")
 	private String lastName;
+	@ApiModelProperty(notes = "Direccion")
 	private String address;
+	@ApiModelProperty(notes = "Ciudad")
 	private String city;
 	
 	public Person() {
